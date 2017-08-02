@@ -525,6 +525,7 @@ service bdaddr /system/bin/bdaddr_xiaomi
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
+    shutdown critical
     group system wakelock
 
 on property:ro.boot.emmc=true
