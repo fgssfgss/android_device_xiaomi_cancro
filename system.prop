@@ -123,3 +123,6 @@ ro.qualcomm.bluetooth.pbap=true
 persist.bt.enableAptXHD=true
 persist.service.btui.use_aptx=1
 persistent.bt.a2dp_offload_cap=sbc-aptx-aptXHD
+
+#USB
+persist.sys.usb.config=mtp,adb

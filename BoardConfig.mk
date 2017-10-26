@@ -173,6 +173,30 @@ TARGET_RECOVERY_FSTAB              := $(LOCAL_PATH)/rootdir/root/fstab.full
 TARGET_RECOVERY_PIXEL_FORMAT       := "RGBX_8888"
 TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/leds/lcd-backlight/brightness\"
 
+# TWRP Support
+ifeq ($(WITH_TWRP),true)
+TARGET_RECOVERY_DEVICE_DIRS += $(LOCAL_PATH)/twrp
+RECOVERY_VARIANT := twrp
+TW_THEME := portrait_hdpi
+WITH_TWRP := true
+BOARD_HAS_NO_REAL_SDCARD                := true
+BOARD_RECOVERY_SWIPE                    := true
+RECOVERY_GRAPHICS_USE_LINELENGTH        := true
+RECOVERY_GRAPHICS_FORCE_USE_LINELENGTH := true
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID  := true
+TW_INCLUDE_CRYPTO                       := true
+TARGET_RECOVERY_QCOM_RTC_FIX            := true
+BOARD_SUPPRESS_SECURE_ERASE             := true
+BOARD_SUPPRESS_EMMC_WIPE                := true
+RECOVERY_SDCARD_ON_DATA                 := true
+TW_EXCLUDE_SUPERSU := true
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+TW_MAX_BRIGHTNESS := 255
+TW_DEFAULT_BRIGHTNESS := 160
+TW_INCLUDE_NTFS_3G := true
+TW_TARGET_USES_QCOM_BSP := true
+endif
+
 # Lineage Hardware
 BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/lineagehw
 
@@ -215,4 +239,4 @@ include device/qcom/sepolicy/legacy-sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
         $(LOCAL_PATH)/sepolicy
 
--include vendor/xiaomi/cancro/BoardConfigVendor.mk
+include vendor/xiaomi/cancro/BoardConfigVendor.mk
