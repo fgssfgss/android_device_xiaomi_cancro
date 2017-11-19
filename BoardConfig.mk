@@ -219,9 +219,6 @@ BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 TARGET_HW_DISK_ENCRYPTION := true
 TARGET_LEGACY_HW_DISK_ENCRYPTION := true
 
-# Simple time service client
-BOARD_USES_QC_TIME_SERVICES := true
-
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
