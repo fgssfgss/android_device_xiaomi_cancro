@@ -135,6 +135,10 @@ PRODUCT_PACKAGES += \
     NfcNci \
     Tag
 
+# NFC hack
+ PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/manifest_nfc.xml:system/vendor/manifest_nfc.xml
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/releasetools/device_check.sh:install/bin/device_check.sh
 
