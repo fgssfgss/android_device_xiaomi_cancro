@@ -550,8 +550,9 @@ service start_hci_filter /system/bin/wcnss_filter
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     class late_start
     user bluetooth
-    group bluetooth net_bt_admin
+    group bluetooth net_bt_admin diag radio
     disabled
+	seclabel u:r:bluetooth_loader:s0
     oneshot
 
 on property:bluetooth.hciattach=true
@@ -817,6 +818,7 @@ service profiler_daemon /system/bin/profiler_daemon
 service charger /charger
     class charger
     critical
+	group system graphics
     seclabel u:r:charger:s0
 
 # SSR setting
