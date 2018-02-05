@@ -22,6 +22,8 @@
 */
 
 #define LOG_NDEBUG 1
+#define REAR_CAMERA_ID 0
+#define FRONT_CAMERA_ID 1
 
 #define LOG_TAG "CameraWrapper"
 #include <cutils/log.h>
@@ -130,6 +132,7 @@ static int check_vendor_module()
 static char *camera_fixup_getparams(int id __attribute__((unused)),
         const char *settings)
 {
+	
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
@@ -137,6 +140,24 @@ static char *camera_fixup_getparams(int id __attribute__((unused)),
     ALOGV("%s: Original parameters:", __FUNCTION__);
     params.dump();
 #endif
+	if (id == REAR_CAMERA_ID) 
+	{
+		/*Remove double hdr*/
+		const char *supportedSceneModes = "auto,asd,landscape,snow,beach,sunset,night,portrait,backlight,sports,steadyphoto,flowers,candlelight,fireworks,party,night-portrait,theatre,action,AR,hdr";
+		params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES, supportedSceneModes);
+		
+		/* min-focus-pos-index=40 */
+		params.set("min-focus-pos-index", "0");
+		/* min-focus-pos-dac=754 */
+		params.set("min-focus-pos-dac", "1023");
+		/* max-focus-pos-index=60 */
+		params.set("max-focus-pos-index", "300");
+		/* focus-distances=Infinity,Infinity,Infinity */
+		params.set("focus-distances", "0.10,1.20,Infinity");
+		/* qc-camera-features=13439 */
+		params.set("qc-camera-features", "29823");
+	}
+	
 
 #if !LOG_NDEBUG
     ALOGV("%s: Fixed parameters:", __FUNCTION__);
