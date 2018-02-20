@@ -527,6 +527,7 @@ service rmt_storage /system/bin/rmt_storage
     user root
     shutdown critical
     group system wakelock
+    writepid /dev/cpuset/system-background/tasks
 
 on property:ro.boot.emmc=true
     start rmt_storage
