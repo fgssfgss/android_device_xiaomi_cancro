@@ -237,6 +237,10 @@ include device/qcom/sepolicy/sepolicy.mk
 include device/qcom/sepolicy/legacy-sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
-        $(LOCAL_PATH)/sepolicy
+     $(LOCAL_PATH)/sepolicy
+
+# Shims
+TARGET_LD_SHIM_LIBS := \
+     /system/bin/mm-qcamera-daemon|libshims_camera.so
 
 include vendor/xiaomi/cancro/BoardConfigVendor.mk
