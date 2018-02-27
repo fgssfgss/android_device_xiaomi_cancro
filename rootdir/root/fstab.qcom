@@ -2,7 +2,7 @@
 # The filesystem that contains the filesystem e2fsck binary (typically /system) cannot
 # specify 'check', and must come before any filesystems that do specify 'check'
 
-# NOTE: /system partition is now early-mounted and the fstab entry is specified in device tree:
+# NOTE: /system partition is now early-mounted and the fstab entry is specified in device tree (duplicated below for recovery image purposes only):
 #       /proc/device-tree/firmware/android/fstab/system
 /dev/block/platform/msm_sdcc.1/by-name/cache        /cache          f2fs    rw,nosuid,nodev,noatime,nodiratime,inline_xattr                 wait,check
 /dev/block/platform/msm_sdcc.1/by-name/cache        /cache          ext4    noatime,nosuid,nodev,barrier=1,data=ordered,noauto_da_alloc,errors=panic wait,check
@@ -13,6 +13,7 @@
 /dev/block/platform/msm_sdcc.1/by-name/boot         /boot           emmc    defaults                                                        defaults
 /dev/block/platform/msm_sdcc.1/by-name/recovery     /recovery       emmc    defaults                                                        defaults
 /dev/block/platform/msm_sdcc.1/by-name/misc         /misc           emmc    defaults                                                        defaults
+/dev/block/platform/msm_sdcc.1/by-name/system       /system          ext4    ro,barrier=1                                                  wait,recoveryonly
 /dev/block/platform/msm_sdcc.1/by-name/modem        /radio          emmc    defaults                                                        wait
 /dev/block/platform/msm_sdcc.1/by-name/sbl1         /sbl1           emmc    defaults                                                        defaults
 /dev/block/platform/msm_sdcc.1/by-name/sbl2         /sbl2           emmc    defaults                                                        defaults
