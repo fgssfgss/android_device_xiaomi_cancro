@@ -284,7 +284,11 @@ PRODUCT_PACKAGES += \
     ethertypes \
     libnl_2 \
     libbson
-    
+
+# Tools
+PRODUCT_PACKAGES += \
+    libtinyxml
+
 # Seccomp policy
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp_policy/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy \
