@@ -54,7 +54,7 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    libshim_atomic \
+    libshim_dso_handle \
     libshims_camera \
     camera.msm8974 \
     libxml2 \
@@ -73,6 +73,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
+    libshim_atomic \
     android.hardware.power@1.0-impl \
     power.msm8974
 

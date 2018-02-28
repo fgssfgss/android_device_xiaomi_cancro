@@ -241,7 +241,6 @@ BOARD_SEPOLICY_DIRS += \
      $(LOCAL_PATH)/sepolicy
 
 # Shims
-TARGET_LD_SHIM_LIBS := \
-     /system/bin/mm-qcamera-daemon|libshims_camera.so
+TARGET_LD_SHIM_LIBS := /system/lib/libcutils.so|libshim_atomic.so:/system/vendor/lib/libFaceProc.so|libshim_dso_handle.so:/system/bin/mm-qcamera-daemon|libshims_camera.so
 
 include vendor/xiaomi/cancro/BoardConfigVendor.mk
