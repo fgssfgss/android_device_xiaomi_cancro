@@ -818,11 +818,10 @@ service profiler_daemon /system/bin/profiler_daemon
     group root
     disabled
 
-service charger /charger
+service charger /sbin/chargeonlymode
     class charger
-    critical
-	group system graphics
-    seclabel u:r:charger:s0
+    group system graphics
+    seclabel u:r:chargeonlymode:s0
 
 # SSR setting
 on property:persist.sys.ssr.restart_level=*
