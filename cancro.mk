@@ -77,7 +77,7 @@ PRODUCT_PACKAGES += \
     android.hardware.power@1.0-service-qti
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/changepowermode.sh:system/bin/changepowermode.sh
+    $(LOCAL_PATH)/configs/changepowermode.sh:$(TARGET_COPY_OUT_VENDOR)/bin/changepowermode.sh
 
 # Vibrator
 PRODUCT_PACKAGES += \

@@ -325,7 +325,7 @@ service ppd /system/bin/mm-pp-daemon
 on property:init.svc.surfaceflinger=stopped
     stop ppd
 
-service changepowermode /system/bin/changepowermode.sh
+service changepowermode /vendor/bin/changepowermode.sh
     user root
     oneshot
     disabled
