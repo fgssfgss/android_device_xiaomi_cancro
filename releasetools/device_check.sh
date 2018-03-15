@@ -46,7 +46,7 @@ else
     rm -rf /system/vendor/manifest.xml
     mv -f /system/vendor/manifest_mi3.xml /system/vendor/manifest.xml
     # Remove Mi4 consumerir support
-    rm -rf /system/etc/permissions/android.hardware.consumerir.xml
+    rm -rf /system/vendor/etc/permissions/android.hardware.consumerir.xml
     rm -rf /system/vendor/lib/hw/consumerir.msm8974.so
     rm -rf /system/vendor/lib/hw/android.hardware.ir@*.so
     rm -rf /system/vendor/bin/hw/android.hardware.ir@*.so
