@@ -3,10 +3,15 @@ type bdaddr_exec, exec_type, file_type;
 
 init_daemon_domain(bdaddr)
 
-allow bdaddr nv_data_file:dir { search };
-allow bdaddr nv_data_file:file { r_file_perms };
+# Allow bdaddr to communicate with qmuxd via qmux_radio socket
+qmux_socket(bdaddr)
 
-allow bdaddr bluetooth_data_file:dir { rw_dir_perms };
-allow bdaddr bluetooth_data_file:file { create_file_perms };
+# Allow access to /data/misc/bluetooth
+allow bdaddr bluetooth_data_file:dir w_dir_perms;
+allow bdaddr bluetooth_data_file:file create_file_perms;
 
-set_prop(bdaddr, bluetooth_prop)
+allow bdaddr diag_device:chr_file rw_file_perms;
+
+allow bdaddr self:capability { fsetid dac_override };
+
+allow bdaddr smem_log_device:chr_file rw_file_perms;
