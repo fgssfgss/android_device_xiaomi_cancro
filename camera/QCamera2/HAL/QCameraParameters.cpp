@@ -9940,3 +9940,4 @@ uint8_t QCameraParameters::getNumOfExtraBuffersForPreview()
 }
 
 }; // namespace qcamera
+

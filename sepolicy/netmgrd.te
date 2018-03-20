@@ -5,4 +5,3 @@ allow netmgrd self:capability { dac_override };
 allow netmgrd netd_socket:sock_file rw_file_perms;
 allow netmgrd socket_device:dir { add_name write };
 allow netmgrd socket_device:sock_file { create };
-allow netmgrd fs:file { lock };
