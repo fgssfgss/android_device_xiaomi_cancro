@@ -1,3 +1,8 @@
+#============= untrusted_app_25 ==============
+#allow untrusted_app_25 apk_data_file:file setattr;
+#allow untrusted_app_25 proc:file { getattr open };
+allow untrusted_app_25 rootfs:dir { open read };
+
 # allow apps to read battery status
 allow untrusted_app_25 sysfs_battery_supply:dir r_dir_perms;
 allow untrusted_app_25 sysfs_battery_supply:file r_file_perms;

@@ -1,6 +1,4 @@
-# Start bdAddrLoader from init
-#init_daemon_domain(bluetooth_loader)
-
+#============= bluetooth_loader ==============
 # Run init.qcom.bt.sh
 allow bluetooth_loader shell_exec:file { entrypoint getattr read };
 allow bluetooth_loader bluetooth_loader_exec:file { getattr open execute_no_trans };
@@ -32,6 +30,8 @@ allow bluetooth_loader { sysfs rootfs }:file { open read getattr };
 allow bluetooth_loader qmuxd_socket:dir { write add_name remove_name search };
 allow bluetooth_loader qmuxd_socket:sock_file { create setattr getattr write unlink };
 allow bluetooth_loader qmuxd:unix_stream_socket { connectto };
+
+allow bluetooth_loader hci_attach_dev:chr_file { ioctl open read write };
 
 userdebug_or_eng(`
   diag_use(bluetooth_loader)
