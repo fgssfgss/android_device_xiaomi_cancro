@@ -582,21 +582,19 @@ on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
-service ril-daemon2 /system/vendor/bin/hw/rild -c 2
+service ril-daemon /vendor/bin/hw/rild
     class main
-    socket rild2 stream 660 root radio
-    socket rild-debug2 stream 660 radio system
+    socket rild stream 660 root radio
+    socket rild-debug stream 660 radio system
     user root
-    disabled
-    group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2950 log net_raw
+    group radio cache inet misc audio log oem_2950 net_raw wifi
 
-service ril-daemon3 /system/vendor/bin/hw/rild -c 3
+service ril-daemon1 /vendor/bin/hw/rild -c 2
     class main
-    socket rild3 stream 660 root radio
-    socket rild-debug3 stream 660 radio system
-    user root
+    user radio
+    group radio cache inet misc audio log readproc wakelock
+    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
     disabled
-    group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2950 log net_raw
 
 on property:usb_uicc.spi_bridge_enabled=1
     insmod /system/lib/modules/ice40-hcd.ko
@@ -652,3 +650,4 @@ on property:persist.radio.modem=LTE-CU
     setprop persist.radio.data_no_toggle 1
     setprop persist.fd.scroff.timer 3000
     setprop persist.fd.scron.timer 10000
+
