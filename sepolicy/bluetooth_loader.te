@@ -18,6 +18,7 @@ allow bluetooth_loader toolbox_exec:file rx_file_perms;
 
 # Allow hci_qcomm_init /persist/.bt_nv.bin access
 r_dir_file(bluetooth_loader, persist_file);
+allow bluetooth_loader bluetooth_data_file:dir search;
 allow bluetooth_loader bluetooth_data_file:file r_file_perms;
 
 # Access the smd device
@@ -32,6 +33,7 @@ allow bluetooth_loader qmuxd_socket:sock_file { create setattr getattr write unl
 allow bluetooth_loader qmuxd:unix_stream_socket { connectto };
 
 allow bluetooth_loader hci_attach_dev:chr_file { ioctl open read write };
+allow bluetooth_loader wcnss_prop:file { getattr open read };
 
 userdebug_or_eng(`
   diag_use(bluetooth_loader)

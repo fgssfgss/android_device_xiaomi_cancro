@@ -2,7 +2,7 @@
 allow sensors persist_misc_file:file { getattr open read setattr write };
 #allow sensors default_prop:property_service set;
 allow sensors init:unix_stream_socket connectto;
-allow sensors persist_misc_file:dir { getattr open read };
+allow sensors persist_misc_file:dir {search getattr open read };
 allow sensors property_socket:sock_file write;
 
 # drop privileges

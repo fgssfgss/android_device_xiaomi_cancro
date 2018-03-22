@@ -1,3 +1,11 @@
+#============= rild ==============
+allow rild self:capability { dac_override dac_read_search };
+allow rild smem_log_device:chr_file { read write ioctl open};
+
+# Allow the daemon to access /dev/radio and create qcril.db there
+allow rild qcril_device:dir rw_dir_perms;
+allow rild qcril_device:file create_file_perms;
+
 allow rild nv_data_file:dir { getattr search write create add_name };
 allow rild nv_data_file:file { create open write };
 binder_call(rild, servicemanager)
