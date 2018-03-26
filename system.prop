@@ -1,7 +1,20 @@
 ro.vendor.extension_library=libqti-perfd-client.so
 rild.libpath=/vendor/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
-persist.radio.apm_sim_not_pwdn=0
+persist.rild.nitz_plmn=
+persist.rild.nitz_long_ons_0=
+persist.rild.nitz_long_ons_1=
+persist.rild.nitz_long_ons_2=
+persist.rild.nitz_long_ons_3=
+persist.rild.nitz_short_ons_0=
+persist.rild.nitz_short_ons_1=
+persist.rild.nitz_short_ons_2=
+persist.rild.nitz_short_ons_3=
+
+#Enable Power save functionality for modem
+persist.radio.add_power_save=1
+persist.radio.apm_sim_not_pwdn=1
+persist.radio.oem_socket=false
 
 mmp.enable.3g2=true
 mm.enable.smoothstreaming=true
@@ -10,10 +23,19 @@ ro.ril.enable.amr.wideband=1
 ro.telephony.default_network=9
 
 wifi.interface=wlan0
+
+#
+# system props for the data modules
+#
 ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
-persist.data.tcpackprio.enable=true
+persist.data.mode=concurrent
 ro.data.large_tcp_window_size=true
+persist.data.tcpackprio.enable=true
+
+#
+# system props for the cne module
+#
 persist.cne.feature=0
 
 ro.fm.transmitter=false
@@ -31,6 +53,7 @@ ro.qualcomm.cabl=0
 ro.qcom.ad=1
 ro.qcom.ad.calib.data=/system/etc/calib.cfg
 ro.qcom.ad.sensortype=2
+
 ro.qualcomm.sensors.qmd=true
 ro.qualcomm.sensors.smd=true
 ro.qualcomm.sensors.cmc=true
@@ -51,52 +74,97 @@ ro.qc.sdk.sensors.gestures=true
 ro.qc.sdk.gestures.camera=false
 ro.qc.sdk.camera.facialproc=false
 
-ro.qc.sdk.audio.ssr=false
-ro.qc.sdk.audio.fluencetype=none
-audio.offload.video=false
+# Audio
+persist.speaker.prot.enable=true
+qcom.hw.aac.encoder=true
+tunnel.audio.encode = false
+
+persist.audio.init_volume_index=1
+
+# Audio offload
+audio.offload.buffer.size.kb=32
+av.offload.enable=true
+audio.offload.video=true
+audio.offload.gapless.enabled=true
+audio.offload.disable=0
 use.voice.path.for.pcm.voip=true
+persist.audio.dirac.speaker = true
+persist.audio.camcorder.stereo = true
+
+# Enable AAC 5.1 output
+media.aac_51_output_enabled=true
+
+# Voice Call
+ro.qc.sdk.audio.ssr=false
+ro.qc.sdk.audio.fluencetype=fluence
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
-persist.audio.fluence.speaker=false
-af.fast_track_multiplier=1
-audio_hal.period_size=192
-
-persist.audio.vns.mode=2
+persist.audio.fluence.speaker=true
 
 # Enalbe modem fast dormancy function
 persist.env.fastdorm.enabled=true
 persist.radio.data_no_toggle=1
 persist.fd.scroff.timer=3000
 persist.fd.scron.timer=10000
+
 # Disable DSD in this product line due to some DSD limitation
 persist.radio.dont_use_dsd=true
+
 # For specail cdma card sms issue
+persist.camera.cpp.duplication=false
 persist.radio.force_on_dc=true
+
 # For sglte CT's operator name
 persist.radio.sglte.eons_domain=ps
 ro.qualcomm.perf.cores_online=1
+
+#Dalvik
 dalvik.vm.dex2oat-swap=false
+dalvik.vm.dex2oat-threads=2
+dalvik.vm.image-dex2oat-threads=4
+dalvik.vm.heapstartsize=16m
+dalvik.vm.heapgrowthlimit=192m
+dalvik.vm.heapsize=512m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=2m
+dalvik.vm.heapmaxfree=8m
+
+# GPS
 ro.gps.agps_provider=1
-persist.debug.wfd.enable=1
+
+# HDMI
 persist.demo.hdmirotationlock=false
 ro.hdmi.enable=true
+
+# OpenGL ES 3.0
 ro.opengles.version=196609
+
+# QCOM Display
 ro.sf.lcd_density=480
 persist.hwc.mdpcomp.enable=true
-persist.timed.enable=true
-persist.sys.wfd.virtual=0
 
-persist.camera.cpp.duplication=false
+# Time
+persist.timed.enable=true
+
+# WFD
+persist.debug.wfd.enable=1
+persist.sys.wfd.virtual=0
 camera2.portability.force_api=1
+persist.camera.4k2k.enable=1
+
+debug.mdpcomp.4k2kSplit=1
+
 persist.media.treble_omx=false
 camera.disable_treble=true
 debug.hwui.use_buffer_age=false
 
+#Bluetooth
+bluetooth.hfp.client=1
 qcom.bluetooth.soc=smd
 ro.bluetooth.hfp.ver=1.7
 ro.qualcomm.bt.hci_transport=smd
-ro.bluetooth.dun=false
-ro.bluetooth.sap=false
+ro.bluetooth.dun=true
+ro.bluetooth.sap=true
 ro.qualcomm.bluetooth.ftp=true
 ro.qualcomm.bluetooth.hfp=true
 ro.qualcomm.bluetooth.hsp=true
@@ -112,3 +180,6 @@ persistent.bt.a2dp_offload_cap=sbc-aptx-aptXHD
 
 #USB
 persist.sys.usb.config=mtp,adb
+
+# Quick charging
+persist.usb.hvdcp.detect=true
